@@ -1,0 +1,12 @@
+unzip "/home/ec2-user/environment/amazon-textract-idp-cdk-stack-samples.zip" -d "/home/ec2-user/environment"
+chmod 755 /home/ec2-user/environment/amazon-textract-idp-cdk-stack-samples
+chown -R ec2-user:ec2-user /home/ec2-user/environment/amazon-textract-idp-cdk-stack-samples
+python3 -m venv .venv
+source .venv/bin/activate
+cd amazon-textract-idp-cdk-stack-samples/
+pip install -r requirements.txt
+cdk bootstrap
+cdk synth SimpleSyncWorkflow
+cdk deploy SimpleSyncWorkflow --require-approval never
+cdk synth SimpleAsyncWorkflow
+cdk deploy SimpleAsyncWorkflow --require-approval never
