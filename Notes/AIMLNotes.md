@@ -1,6 +1,73 @@
 ### AI ML notes
 | Ref: Reference: https://ml-course.github.io/master/notebooks/01%20-%20Introduction.html
 
+
+
+# Machine Learning concepts
+## Lifecycle 
+1. **Collect Data** 
+    - Any kind of raw data we collect, Like from filed measuring penguins, image data, machine data 
+2. **Process Data** 
+    - The data that we collected from the filed will have all forms of data. 
+    - Get the data into a single format where the algorithm understands.
+    - Then organize the data. (Creating data in to a table)
+    - **Feature and Label**
+      - Add features and labels into the data. 
+      - Feature is the data that we use to characterise the item in the list (Example data with column, age, height, weight)
+      - Label is the thing that we predict. (Example data with colum, likes the girl/boy)
+        - Using above feature + label can be used to train a model to make a prediction matching the label in future. 
+    - **Feature Engineering**
+      - We can manupulate the feature to make better use of preduction. 
+    - **Feature reduction**
+      - Reduce the amount of extranous data.
+      - Only use the data required to make the preduction
+    - **Encoding**
+      - Replace the string with a integer value, kind of masking so that the data can be referred in later stage.
+    - **Formatting**
+      - File format that you use to feed to the model
+3. **Split the Data**
+    - *Training Data -80% of data*
+      - This is where we create the model.
+      - How to choose the parameter and algorithm to train the data 
+      - This is the reason why splitting the data is important. The training data directly influences the model.
+    - *validation Data*
+      - Training mechanism uses the validation data to see how acurate the model is generating. 
+      - To check how well the model is doing using the data.
+    - *Testing data*
+      - Testing Data is not used any time during the training.
+      - How well the model fits, checking underfit or overfit.
+4. **Train a Model**
+    The AI is built by choosing one of the model algorithm Linear, Support Vector or Decission tree and make a prediction. Now inorder to do that, you need to train the model with Data and train the model. By training it try to find the best values for the prediction. The output of the training is the model itself with that you can make the predictions. This is how the machine learning works.
+5. **Test the model**
+    - The data that collected during the Training data will be used to see how well the model fits. 
+6. **Deploy the model**
+    - Deploying model is very much of infra build.
+7. **Infer (Make the predictions)**
+    - Giving Real world unlabelled data, giving it to the model and asking it to label.
+    - This means making predictions. 
+8. **Improve (How to improve the model in real time)**
+    - As part of improvement the whole cycle starts from Step 3: Split Data
+
+
+# AI
+- AI in reality is in place from mid 60s, like spam filters, AVs 
+- The compute power needed to make the AI to work was not available before 90s, but by 2011s advancement of computer power the AI is possible.
+- AI is very broad object.
+- - ML is a subset of AI 
+  - - Deep learning is a subset of ML. 
+# ML 
+- ML is a subset of AI 
+- Let us assume we have a data from a recent expedition (Relation between height and weight of penguine), the each data point is plotted in the graph. 
+  - We got height and weight and put it up against the graph and created a pattern, now next time if we get one data of height we can predict what the weight  will be , just an example. Looking for a trend line. Which is called the training data point. 
+  - a meadian line drawn in between (Linear regression) the data point might be better predicting the height/weight in this case, as the difference of acutal and redicted values are low. Where in the curved line drawn to match the point, the difference will be more with actual vs inference which is called overfitting.
+
+  ##### Train the model
+The AI is built by choosing one of the model algorithm Linear, Support Vector or Decission tree and make a prediction. Now inorder to do that, you need to train the model with Data and train the model. By training it try to find the best values for the prediction. The output of the training is the model itself with that you can make the predictions. This is how the machine learning works.
+
+##### How ML Works
+- Every models start with the data, and choose an algorithm (What prediction that you need to make (example Use linear regression)), then take the data and alogirthm to train a mode. The training is computational expensive process. The output of this training is the model itself. Now we use this model using outside or new data to make predictions. 
+- Adding extra dimention to the data, or more attributes to consider like, feather density, beak types, feet length.. We will endup drawing a multi dimensions of graph, The relationship makes it bit complicated for organic brain. But ML can do calculations using multi dimensional or all dimenstional large datasets. 
+
 # Data
 ### Data collection
 
@@ -152,6 +219,8 @@ Google public query.
  - passengers are the data (Data blob upto 1 mb). 
 - The default limit is 500, but can be increased. 
 - Data store is transient and with a default retention for data records of 24 hours and can be increased now upto 365 days - 8760hours.
+- Each shard can support up to 1 MB/sec or 1,000 records/sec write throughput or up to 2 MB/sec or 2,000 records/sec read throughput.
+
 
 Interact with Kinesis Data Stream 
 ---------------------------------
@@ -427,7 +496,7 @@ Lets take an example of below table:
     - Changing values might change the desired output, so a fine tuning is required.
 - Feature "Type" - (Nominal):
     - The home types are different. 
-    - If we choose the same approach as feature pool size for encoding the algorithm might think that condo is less than house which is less than apartment. 
+    - If we choose the same approach as feature Type for encoding the algorithm might think that condo is less than house which is less than apartment. 
     - It will be a bad idea to encode in such way as this is a nominal value not a ordinal value. 
     - The options are to use one-hot encoding. 
     - **One Hot Encoding**
@@ -520,6 +589,9 @@ Example table:
 - "Term Frequency" = How frequent does a word appear
 - "Inverse" = Makes common words less meaning ful 
 - "Document Frequency" = Number of document in which terms occur.
+- TF - term frequency (Words frequency)
+- IDF - Inverse Document frequency (Sentence Frequency )
+- Helps to find which words in a sentence is more significant.
 - The, and will be less important words in most of the context
 - Shows us the popularity of a words or words in text data by making common words like "the" or "and" less important.
 - Represents how important a word or words are to a given set of text by providing appropriate weights to terms that are common and less common in the text
@@ -548,6 +620,36 @@ Since tokens "the" and "a" are showed up many times in the documents they are de
 ##### Vectorizing TF-IDF
 - Convert a collection of raw documents to a matrix of TF-IDF features.
 - (number of documents, number of unique ngrams)
+- How does it calculates?
+- TF * IDF (higher the value the more significant)
+- Calculate TF - how many times a term occur in a document. 
+```
+         (Number of times term (t) appears in a document)
+ TF(t) = -----------------------------------------------
+          (Total number of terms in the document)
+
+Example: he is a jedi and he will save us
+tf(he) = 2/9 =  0.22222
+tf(jedi) = 1/9 = 0.1111111
+
+```
+- Calculate IDF - Get the weight of rare words. The words that occur rarely in the corpus have a high IDF Score
+
+```
+         log(Total number of documents or number of rows)
+IDF(t) = ------------------------------------------------
+          (Number of documents with term (t) in it)
+Example: he is a jedi and he will save us   
+         he is the exterminator and he will kill pests
+         he is an ice cream man and he will save us   
+
+IDF(he) = log 3/6 = 0.07952020911
+IDF(jedi) = log 3/1 = 0.47712125472
+```
+
+- Example module to vectorize is TfidfVectorizer from sklearn
+- Once vectorized you the vector is identified as below.
+(The row number on which the records that belongs to, encoded value of the word)
 
 ##### Example use cases for text feature engineering techniques.
 
@@ -631,10 +733,12 @@ Apply date feature engineering to create more useful dataset. With this informat
 ##### Feature Scaling 
 - Changing numeric values so all values are on the same scale. 
 - Takes large numbers and scale it to normal numbers. Reduces large calculations.
+
 **Normalization** 
 - Scaling is same thing as Feature scaling which is same as Normalization
 - Example:
 Lets take an example of below table:
+
 | ID | Type | Bedrooms | Area | Pool Size | Price | Loan Approved |
 |----|------|----------|------|-----------|-------|----------------|
 | 1  | condo | 2        | 2432 | S         | 250555 | N              |
@@ -667,9 +771,12 @@ Output value
 |   0.0000    |
 
 - This is the most common and easiest techniques but Outliers can throw off normalization. 
+- An outlier is an individual point of data that is distant from other points in the dataset. It is an anomaly in the dataset that may be caused by a range of errors in capturing, processing or manipulating data. Outliers are data points that deviate significantly from the rest of the distribution, and they can have a big impact on your feature selection process.
+
 
 **Standardization**
-- It puts the average price on zero and uses the z-score for the reminder of the values,.
+- It puts the average price on zero and uses the z-score for the reminder of the values.
+- Assume you have 83% in maths test where class mean was 81%, and standard deviation is 7.3%, the standardization will help to calculate how you performed overall compared to class with mean of zero, the ZScore in such scenario will be 0.274. Which means you are better than overall class with the margin of 0.274 points.
 - The zscore is calculated using the following
 ```
      x - Mean Price
@@ -864,44 +971,755 @@ The above dataset has the prediction for learning the trick, however determine w
 | EMR | PySpark/Hive in EMR | Transform petabytes of distributed data and output data into S3 |
 | RDS, EMR, DynamoDB, Redshift | Data Pipeline | Setup EC2 instances to transform data and output data into S3 |
 
+### Data prep Lab
+- Assume the data is loaded into S3
+- Answer business question from the data.
+    - What percentage of users are female (Use Athena to run the query against the data)
+- Convert to CSV 
+    - Use AWS GLue job to run apache spark to convert to CSV
+- Mapping gender catogorical value to numberical values
+    - Use glue
+Overall flow
+S3 -> Glue Crawler -> Glue Catalog -> Use Athena to answer business question -> Glue Job Apache spark (Perform transformation) -> Load data to S3
+
+1. Setup Athena catalog from Glue Catalog. (Add Crawler on Glue and use it on Athena)
+2. Run SQL Query to check the data
+```
+SELECT COUNT(*)
+FROM "my-user-database"."my_user_data_output_bucket"
+```
+```
+-- percentage of gender 
+SELECT gender, (COUNT(gender) * 100.0 / (SELECT COUNT(*) FROM <AWS_GLUE_TABLE_NAME>)) AS percent
+FROM <AWS_GLUE_TABLE_NAME>
+GROUP BY gender;
+```
+```
+-- Most common ages
+SELECT age, COUNT(age) AS occurances 
+FROM <AWS_GLUE_TABLE_NAME>
+GROUP BY age
+ORDER BY occurances DESC
+LIMIT 5;
+```
+```
+ SELECT SUM(CASE WHEN age BETWEEN 21 AND 29 THEN 1 ELSE 0 END) AS "21-29",
+        SUM(CASE WHEN age BETWEEN 30 AND 39 THEN 1 ELSE 0 END) AS "30-39",
+        SUM(CASE WHEN age BETWEEN 40 AND 49 THEN 1 ELSE 0 END) AS "40-49",
+        SUM(CASE WHEN age BETWEEN 50 AND 59 THEN 1 ELSE 0 END) AS "50-59",
+        SUM(CASE WHEN age BETWEEN 60 AND 69 THEN 1 ELSE 0 END) AS "60-69",
+        SUM(CASE WHEN age BETWEEN 70 AND 79 THEN 1 ELSE 0 END) AS "70-79"
+ FROM <AWS_GLUE_TABLE_NAME>;
+```
+3. Transform data from json to CSV and change the gender attribute to a binary value ( from male/female to 0 or 1).
+```
+import sys
+from awsglue.transforms import *
+from awsglue.utils import getResolvedOptions
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
+from awsglue.job import Job
+from itertools import chain
+from pyspark.sql.functions import create_map, lit
+from awsglue.dynamicframe import DynamicFrame
+
+args = getResolvedOptions(sys.argv, ['JOB_NAME'])
+
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session 
+job = Job(glueContext)
+job.init(args['JOB_NAME'], args)
+
+datasource0 = glueContext.create_dynamic_frame.from_catalog(database = "<AWS_GLUE_DATABASE_NAME>", table_name = "<AWS_GLUE_TABLE_NAME>", transformation_ctx = "datasource0")
+
+# Here is the custom gender mapping transformation 
+df = datasource0.toDF()
+gender_dict = { 'male': 1, 'female':0 }
+mapping_expr = create_map([lit(x) for x in chain(*gender_dict.items())])
+df = df.withColumn('gender', mapping_expr[df['gender']])
+datasource_transformed = DynamicFrame.fromDF(df, glueContext, "datasource0")
+
+applymapping1 = ApplyMapping.apply(frame = datasource_transformed, mappings = [("first", "string", "first", "string"), ("last", "string", "last", "string"), ("age", "int", "age", "int"), ("gender", "string", "gender", "string"), ("latitude", "double", "latitude", "double"), ("longitude", "double", "longitude", "double")], transformation_ctx = "applymapping1")
+
+datasink2 = glueContext.write_dynamic_frame.from_options(frame = applymapping1, connection_type = "s3", connection_options = {"path": "s3://<S3_BUCKET_NAME>"}, format = "csv", transformation_ctx = "datasink2")
+job.commit()
+```
+
+## Data Analysis and Visualization
+- So far we have fetched the data, cleaned and prepared the data, the next step prior to use the data to train a model is to Analyze and Visualize the data. 
+- Cross check if the data is completely ready for training, or need to go back and prepare the data once again.
+- Technical tool Bring important information about the data using visualization.
+
+Sample data:
+
+| car | price | date | 
+| --- | --- | --- | 
+| mustang | 287326 | 06/2015 |
+| Ferari | 42342 | 4/2015 |
+| mustang | 334534 | 2/2015 |
+| suziki | 23423 | 12/2015 |
+| Ferari | 52423 | 3/2019 |
+| tata | 42345 | 3/2018 |
+| toycar | 23425 | 3/2016 |
+
+
+What is the best technique to visualize the data? 
+Different categories helps one to analyze the data are :
+
+1. **Relationships**
+  Do we want to find important relationships within our data? Are there any trends or outliers?
+  - Helps to provide a good general overview, show distributions and correlation between attributes. Helps to find outliers and extreme values.
+  - Methods to compare relationships are -
+    - **Scatter Plots** (Relationship between Two attributes )
+      - Is there a relationship between size of house and its price (size on x axis and price on y axis)
+    - **Bubble Plots** (Relationship between Three attributes )
+      - is there a relationship between size of a home, age of the home and the price? (size on x axis and price on y axis and age can be denoted as bubble)
+  - The visualization helps to identify any correlations between two or more attributes. 
+    - Positive Correlation
+    - Negative Correlation
+    - No Correlation
+
+2. **Comparisons**
+  Are we comparing different values within the data?
+  - Visualizing comparisons in your data can provide a static snapshot of how different variables compare and show how different variables change over time.
+  - Methods to compare Comparisons are -
+    - **Bar Charts** (Look up the status for single point in time)
+      - Bar charts using bars to make single variable values comparison. Provides a way to lookup and compare the values.
+      - Example: compare price attribute of cars. Shows static snapshot for the cars. Helps to understand what is the price comparison of cars at given point of time. 
+    - **Line Charts** (Helps to visualize data changes over time)
+      - Shows one or more variables changing over time.
+      - Example: Compare price attribution of cars that changes over time. X axis with price, y axis with dates and different cars to be color coded.
+
+3. **Distributions**
+  Do we want to know more about the distributions of data? Are there any outliers?
+  - How the data is grouped or clustered over certain intervals.
+  - Methods to compare Comparisons are -
+    - **Histograms**
+      - Graphs put values into buckets or bins and determines a measurement.
+      - Assume you got a car dataset with name, price and date as attributes/features. 
+      - price on x axis and number of cars on y axis. We can group the number of cars in a group of price range (bins of price).
+      - This helps to increase the number of bins to see further distribution of data. (as the number of cars falls into different price bins)
+    - **Box Plots**
+      - Graphs show a wealth of distribution information, Can see things like lowest and highest values outliers and where the most values fails.
+      - Box plot shows a lot of information when visualizing distribution.
+      - Assume you git y axis with price range and x axis with car names, a box plot will show a max and min value, with a median value, An extreme value of price (may be an outliers) also a box in the box plot shows the majority of cars for the price.
+      - Another example is to show the distribution of test scores for a given exam.
+    - **Scatter Plots** 
+      - Also knows as scatter charts. Points long x and y axis for two values. Can show clustering and distribution of data
+      - As same as relationship method to view but added changes over time. For example, showing scatter plots of cars prices over time for different cars.
+      - Show return of investment for the money spend and the total time invested
+
+4. **Compositions**.
+  Want to know what makes up the data? What are the components of the data?
+  - What are the data made of?
+  - Methods to compare Comparisons are -
+    - **Pie Charts**
+      - Pie charts show how various values compare as a whole share of the total 
+      - What percentage of car is mustang in the entire dataset.
+      - Another example: Showing hte sales figures for each region
+    - **Stacked Area charts** 
+      - Stacked area charts shows the measurement of various items over longer period of time. 
+      - Lets assume you have another feature added to the dataset called dealership where the car is sold
+      - The stacked are helps to show Dates on x axis number of cars sold in y axis and the car dealer in color coded stack(lines).
+      - Another example: Showing the number of products sold by different departments on a weekly basis.
+    - **Stacked Column charts**
+      - Stacked bar charts - show quantity of various items over shorter periods of time.
+      - Lets assume you have another feature added to the dataset called dealership where the car is sold
+      - The stacked are helps to show dealership name on x axis number of cars sold in y axis and the dates in color coded bars.
+      - Another example: Showing the quarterly revenue totals for each region.
+
+
+Different tools are available to visualize the data. 
+- Developer Tools
+  - Pandas
+  - Python
+  - Jupyter
+  - matplotlib
+  - Sagemaker
+  - scikit learn
+
+- Business Intelligence Tools
+  - Tableau
+  - Amazon QuickSight
+    - BI tool to create visualization
+
+### Overview of categories and corresponding graphs for visualization
+![alt text](visualization_graphs.png "visualization_graphs")
+### Choose a visualization for a problem
+- Picking the right visualization method depends on what you want to see. 
+ - is it Relationship?
+ - is it Comparison? 
+ - is it Distribution ?
+ - is it Composition ? 
+- **Heatmap**
+  - Shows can show more than two different categories like composition, distribution and comparison. Example: Population density map for the world. 
 
 
 
+### Lab 
+- Create AWS Quicksight 
+- Create boxplot using matplotlib in jupyter notebook
 
 
 
+# Train the model
+- So far, we collected data, cleaned, prepared, encoded and time to train t he model.
+- Garbage in garbage out, good data in better the inference.
+- First in foremost we have to have a problem to solve and then there should be data that describes the problem that we are trying to solve.
+  - We can add a ML algorithm and through computation the ML will try to reverse engineer the situation by looking at data and comeup with the mathematical formula to generalize the problem, Now when you give the new problem to the model (similar to training data) the mathematical formula can infer the outcome based on what it learned and generated from the training data.
+
+### Components in developing a good model
+An ML Model will have below components.
+  - Generalization (what are we trying to achieve)
+  - Model
+  - Data
+  - Algorithm
+  - Computation
+  - Feedback 
+
+- Are we forecasting the number? Decides what data you need and what algorithm that we are going to use.
+- Do we really need a ML ? can we use something that was already build?
+- Is prediction realtime, or can be done in batch. 
+- Do we have the data to work with? Do we have enough or more data (how much feature engineering should be done)?
+- How can we tell if the inference is working as expected?
+
+In detail: 
+1) What type of generalization are we seeking?
+Do I need to forecast a number? Decide whether a customer is most likely to choose Option A or Option B? Detect a quality defect in a machined part?
+
+2) Do we really need machine learning?
+Can simple heuristics handle the job just as well? Can I just program some IF...THEN logic? Will a linear regression formula or a look-up function fulfill the needs?
+
+3) How will my ML generalizations be consumed?
+Do I need to return real-time results or can I process the inferences in batch? Will consumers be applications via API call or other systems which will perform additional processing on the data?
+
+4) What do we have to work with?
+What sort of data accurately and fully captures the inputs and outputs of the target generalization? Do I have enough data? Do I have too much?
+
+5) How can I tell if the generalization is working?
+What method can I use to test accuracy and effectiveness? Should my model have a higher sensitivity to false positives or false negatives? How about Accuracy, Recall and Precision?
+
+
+## Different types of models and different styles of their learning
+
+|Properties below | Supervised Learning | Unsupervised Learning | Reinforcement Learning |
+| --- | --- | --- | --- |
+| Discrete | Classification | Clustering | Simulation-based Optimization |
+| Continuous | Regression | Reduction of Dimentionality | Autonomous Devices |
+
+
+## What sort of method we can use or what is the right approach
+
+| Problem | Approach | Why |
+| --- | --- | --- |
+| Detect whether a financial transaction is fraud. | Binary Classification | Only two possible outcomes: Fraud or Not Fraud |
+| Predict the rate of deceleration of a car when brakes are applied. | Heuristic Approach (No ML Needed!, try not to stuff a problem that can be solved using heuristic approach into ML) | Well-known formulas involving speed, inertia and friction to predict this. |
+| Determine the most efficient path of surface travel for a robotic lunar rover. | Simulation-based Reinforcement Learning | Must figure out the optimal path via trial, error and improvement. |
+| Determine the breed of dog in a photograph. | Multi-Class Classification (Many breads and many options to choose) | Which dog breed is most associated with the picture among many breeds? |
+
+## Cascading (stack) algorithms
+- Sometimes it might require to stack algorithm on other to achieve the desired results.
+- Example: Problem What is the estimated basket size of shoppers who responds to email promo:
+  - First have to remove outliers (Random cut forest)
+  - identify relevant attributes (features) that we are going to use from the data (PCA as learned earlier)
+  - Then will have to group them into clusters (K-Means)
+  - Apply an algorithm to predict the basket size (Linear Learner).  
+
+## Confusion Matrix
+- In case of a binary classification 
+| | Actual Outcome TRUE | Actual Outcome FALSE |
+| --- | --- | --- |
+| Predicted outcome TRUE | I predicted correctly! | I was wrong. (False Positive) |
+| Predicted outcome FALSE | I was wrong. (False Negative) | I predicted correctly! |
+
+Lets take an example of outcome for this situation in case of bank
+
+| | Actual Fraud | Actual Not Fraud |
+|-|-|-|
+| Predicted Outcome  Fraud | Happy Bank. Happy Customer. | Happy Bank. Angry Customer. |
+| Predicted Outcome  Not Fraud | Angry Bank. Angry Customer. | Happy Bank. Happy Customer. |
+
+Now lets check the financial situation with the bank 
+
+|  | Actual Outcome Fraud | Actual Outcome Not Fraud |
+| --- | --- | --- |
+| Predicted outcome Fraud | No Money Loss | No Money Loss |
+| Predicted outcome Not Fraud | Money Lost! | No Money Loss |
+
+Evaluation approach:
+What this means is that the bank is likely okay with False positives, but never okay with false negative.
+In this case a false negative inferences are never okay. 
+
+- Take another example of SPAM Filtering
+
+| | Actual Outcome SPAM | Actual Outcome Not SPAM |
+| --- | --- | --- |
+| Predicted outcome SPAM | I predicted correctly! | I was wrong. (False Positive) |
+| Predicted outcome Not SPAM | I was wrong. (False Negative) | I predicted correctly! |
+
+| | Actual Outcome SPAM | Actual Outcome Not SPAM |
+| --- | --- | --- |
+| Predicted outcome SPAM | SPAM and it is blocked | Wrongly accusing email as spam and blocked legitimate email |
+| Predicted outcome Not SPAM | SPAM are allowed with wrong prediction | Legitimate Email - goes through|
+
+Evaluation approach:
+In this case the legitimate emails are blocked with False positive. The end result will be okay to have the SPAM allowed (False Negatives)
+
+## Data prep (how to send data to the model)
+- How to make sure the model is correctly inferencing? 
+  - A portion of the data is reserved for validation data called Testing Data (20%). 
+  - Rest of the data called Training data is used from training the model (80%).
+  - If the testing and training data differs too much there will be an increased error rates, to avoid such scenario before data splitting:
+    - The data should be randomized to make sure it is equally mixed before splitting it into Training and testing data. This is to make sure both the testing and training data will have similar datasets.
+  - Here is a sample code for splitting the data
+
+```
+import numpy as np
+import os
+
+# read raw data
+print("Reading raw data from {}".format(raw_data_file))
+raw = np.loadtxt(raw_data_file, delimiter=',')
+
+# split into train/test with a 90/10 split
+np.random.seed(0)
+np.random.shuffle(raw)
+train_size = int(0.9 * raw.shape[0])
+train_features = raw[:train_size, :-1]
+train_labels = raw[:train_size, -1]
+test_features = raw[train_size:, :-1]
+test_labels = raw[train_size:, -1]
+```
+
+  - If the data is time series data, like stock price over time (to understand google amzn stock from start until now)... How do we split such data into training and testing?
+    - The time here has significant value, in this case we can slice of last few months for the training and testing data.
+    - Keep in mind we cant use the same method for other types of data, doing so you might end up losing some important data set.
+- **K FOLD**
+- How do we know the splitting Training and testing data was best method to divide the data? 
+- Assume the data is split into 4 (25%) each, the KFOLD will use any 3 portions to Train and last one to test. This process will be repeated and for all the models and keeps track of results. Then gives you the better suggestion on what is the right ML algorithm for that data to make inference.
+This is an example of "4 FOLD".
+- How many times that we are going to fold the data.
+- Cross validation helps to test different machine learning algorithms.
+
+## Training the model
+- Sagemaker job can be submitted with Console, Jupyter, Sagemaker SDK, Apache Spark.
+- In general Training Data + Testing Data will be copied at S3 and the model will read it from S3.
+
+Assume you have below data and would like to predict the feature EVIL using a model 
+As a first step how do you split the training and testing data ?
+
+| Name | Affiliation | Evil |
+| --- | --- | --- |
+| Luke | Rebel | 0 |
+| Leia | Rebel | 0 |
+| Han | Rebel | 0 |
+| Yoda | Rebel | 0 |
+| Vadar | Empire | 1 |
+| Jabba | Empire | 1 |
+| Maul | Empire | 1 |
+| JarJar | Empire | 1 |
+
+How do we separate above data? starting at "Vadar" to below? Doing so will make all training data gets Label as 0, and testing with label as 1. 
+How to fix that? We randomize it as below
+
+| Name | Affiliation | Evil |
+| --- | --- | --- |
+| Luke | Rebel | 0 |
+| JarJar | Empire | 1 |
+| Leia | Rebel | 0 |
+| Maul | Empire | 1 |
+| Han | Rebel | 0 |
+| Jabba | Empire | 1 |
+| Yoda | Rebel | 0 |
+| Vadar | Empire | 1 |
+
+Also the Label needs to be moved to upfront 
+
+| Evil | Name | Affiliation |
+| --- | --- | --- |
+| 0 | Luke | Rebel |
+| 1 | JarJar | Empire |
+| 0 | Leia | Rebel |
+| 1 | Maul | Empire |
+| 0 | Han | Rebel |
+| 1 | Jabba | Empire |
+| 0 | Yoda | Rebel |
+| 1 | Vadar | Empire |
+
+Once the data is ready, should upload to S3 so that a model can make use of it. 
+- During upload the data format should be supported by the model's algorithm
+- Most sagemaker accepts CSV - Content-Type = test/csv
+- For unsupervised  - Content-Type = test/csv;label_size=0 (specify absence of a lable.)
+- For optimal performance use protobuf-recordIO or pipemode. 
+
+### How to train the model? 
+- Use High-Level Python library provided by amazon sagemaker
+- use Sagemaker SDK
+1. Specify trainign algorithm 
+2. Supply algorithm-specific hyper parameters
+3. Specify input and output configuration
+
+Hyper-parameters
+
+| Hyperparameter | Values set before the learning process. Manage, adjust or tweak the learning process itself  |
+| --- | --- |
+| Parameter | Values derived via the learning process. |
+
+
+## Sagemaker training
+
+Why we need GPUs rather than CPUs for ML? 
+> GPUs (Graphics Processing Units) are used in machine learning (ML) more than CPUs (Central Processing Units) primarily due to their parallel processing power. ML tasks, such as training deep neural networks, involve heavy matrix operations, which can be executed more efficiently on GPUs due to their architecture optimized for parallel computation. GPUs consist of thousands of cores compared to the limited number of cores in CPUs, enabling them to process multiple calculations simultaneously and handle large datasets much faster. As a result, using GPUs for ML tasks significantly reduces training time and improves performance compared to using CPUs alone.
+
+The chips available?
+Application Specific Integration Circuit - ASIC - (unable to change, Model burned into the chip, not flexible, costly)
+Fix programed Gate Arrays(Specidic model programmed into the chip, hard to change, not flexible, costly)
+GPU (Easy to change, flexible, affordable, optimized for general use)
+CPU (Easy to change, flexible, cheap not optimized )
+
+
+- A sample code to submit a model  on sagemaker
+
+```python
+from sagemaker import KMeans
+
+data_location = 's3://{}/kmeans_highlevel_example/data'.format(bucket)
+output_location = 's3://{}/kmeans_highlevel_example/output'.format(bucket)
+
+kmeans = KMeans(role=role,
+                train_instance_count=2,
+                train_instance_type='ml.c4.8xlarge',
+                output_path=output_location,
+                k=10,
+                data_location=data_location)
+
+kmeans.fit(kmeans.record_set(train_set[0]))
+```
+
+| Code | Note |
+| --- | --- |
+| `from sagemaker import KMeans` | High-Level Python Library. We've chosen a KMeans Algorithm. |
+| `data_location = 's3://{}/kmeans_highlevel_example/data'.format(bucket)` <br> `output_location = 's3://{}/kmeans_highlevel_example/output'.format(bucket)` | Define the location of training data. |
+| `kmeans = KMeans(role=role,` <br> `                train_instance_count=2,` <br> `                train_instance_type='ml.c4.8xlarge',` <br> `                output_path=output_location,` <br> `                k=10,` <br> `                data_location=data_location)` | Instantiate the KMeans training object. <br> (Hyperparameter is k=10) |
+| `kmeans.fit(kmeans.record_set(train_set[0]))` | Call the method to start the training job. |
+
+## What happens once the job is submitted into the sagemaker?
+- AWS has ECR repo with all the training and inference images.
+  - Images with the tag ( :1) is used for Production which is the most stable version
+  - Images with the tag ( :latest) is the most latest version
+  - The images has detailks on what is the training input methods accepted (pipe/file) , file type and instance classes
+- CreateTrainingJob call uses the training images - Uses more GPU intensive
+- CreateModel API call ddeploys model into the inference image - Inference uses less resource intensive
+- Once the code is submitted using the fit method ->
+  - Sagemaker fetch the image and spin up the image, (Optionally you can use your custom Training image using the docker file)
+  - It access the data from the S3
+  - Finally when performs the deployment, it uses the inference image and deploys the trained model into the image.
+- Cloudwatch will have the details of logs during the training.
+
+## using Spark sagemaker library
+- The data ingestion part will happen from Spark , where it creates the DataFrame and conert into Protobuf and stores into S3.
+- Once the data is in S3 rest of the process are same as you normally do. 
+- Once the model is deplyed, for the inference part the data will be referred from the Spark DataFrame.
 
 
 
+# ML Algorithms
+- Why do call algorithms "algorithms".
+ - How to solve a class of problem by unambiguous (CLEAR) specification .
+ - Set of steps to follow to solve a specific problem, intended to be repeatbale with same outcome.
+ - Heuristic in otherhand is a educated guess, where the outcome is not guranteed and its baised (example does the dominos pizza taste good for me).
+ - Computers can't make assumptions as they dont have such prior information like in Heuristic approach mentioned above. 
+ - Algorithm is a finite process with known inputs to expected outputs by removing BIAS.
+  - However BIAS can still creep into ML process
+    - BIAS could be introducted from the data chosen to train the algorithm (Say you have removed a set of data unintentionally and used it for testing)
+    - At the Feedback mechanism - Assume we set a feedback loop to ML but the feedback provided by us was based on Heuristic and most likely to see only one set of result. 
+
+| Supervised Learning | Unsupervised Learning | Reinforcement Learning |
+|----------------------|------------------------|------------------------|
+| Training Data and Testing Data | No Training | How to Maximize Reward |
+| Discrete | Classification | Clustering | Simulation-based Optimization |
+| Continuous | Regression | Reduction of Dimentiionality | Autonomous Devices |
+
+How the algorithms learns themselves?
+## Supervised Learning**
+  - The original labelled data is collected using ML is used to predict or infern. 
+  - Supervising, Labelled data is basics of supervised learning. 
+  - We have told the ML algorithm, this is what it looks like when some one likes penguin, so that it can predict when someone likes the penguins. 
+  - The Linear regression method used is another way of Supervised learning. 
+  - When we have samples of labelled data, to give that for the machine learning model so that it can determine the new data and make inference.
+  - Given a new input X, predict the right output y
+  - Given examples of stars and galaxies, identify new objects in the sky
+  - Learn a model from labeled training data, then make predictions
+  - Supervised: we know the correct/desired outcome (label)
+  -  Subtypes: classification (predict a class) and regression (predict a numeric value)
+  - Most supervised algorithms that we will see can do both
+### **Regression**
+  Think about linear equation you learned at school y = 2x + 3. In this equation if value of either x is given the value of y can be easily figured out and viceversa. 
+  We can also plot the value of x and y into a graph and should be able to predict the value by drawing a line.
+#### **The Linear Regression** 
+    - The linear models are supervised learning algorithms for regression, binary classification or multiclass classifcation problems. You give the models label y and x with x being high dimensional vectar and y us a numberic label. The algorithm learns a linear function or for classficvi ation problem a linear threshold function and maps a vector x to an approimation of label y. 
+    In other words - (Collecting the data of height and weight (X/Y axis) and creating a more predictable linear line ). This is a traditional ML argorith,.. used on basic business cases.
+##### Optimization of Algorithms
+- In a linear regression which line fits the model best? 
+- - Measure the distance between the model and actual data. Is the prediction positive or negative? 
+It uses Gradient Descent method..
+###### Gradiant decent
+  - Imagine you would like to get a linear regression with the best possible method, or in other words optimal prediction line in the Pengiun's height and weight Map. How do we do it?
+  - We can measure difference between the points and line, and square the value and find the difference (Sum of the square residual)
+    - Sum of the sqaure residual, square the difference between the actual value and linear line, then perform a sum. 
+  - This is repated until we find the least residual. The value is calculated by using Sum of residual values at Y axis against "the slope of line" on X axis to find the correct slope of line regression.
+  - The minumum slop of the parabolic graph is calculated with gradient of the descent. It is looking for the minimum slop or close to zero. It performs a step by step calculation of gradiant and finds the bottom of the graph or minimum value of the gradiant that is either flat or close to zero.The step size has to be right sized for the algorithm, as each step size determines how long the calculation runs, If its too short will take time. 
+  - For a double dip parabolic graph botton line, it will have a different outcome, as the initial dip might not be a correct one, hence it requires a trail and error to find the best outcome. This is one of the reason the ML alogrithms are trail and errored to find the best.
+
+ - Linear regression algorithm can be used to predict quantitative value based on given numeric input. 
+  - Example Based on last five years of ROI from marketing spend, what can we expect to be this year's ROI
+ - **Discrete Binary Classification** We can use Linear regression for classification problems, given that the data is structured in numeric format. 
+  - Example based on past experience should I mail this customer or not. Predict yes or no 
+ - **Descrete Multiclass Classififcation Problems** 
+  - Example based on past customer response how should I reach out to customer, email, direct mail or phone call?
+### Other Regression algorithms
+- **Factorization Machines Algorithms**
+  - Linear regression are good when there is a continuos data available. But if the data is missing we can use factorization machines. 
+  - This is good for supervised learning algorithm for both binary classification and regression. Captures interaction between features with high dimensional sparse datasets. 
+  - It is a good choice when you have holes in your data.
+  - It analyses only relationship between two pairs of features at a time. 
+  - CSV is not supported but file and pipe mode training are supported using recordIO-protobuf format with Float32 drivers
+  - Doesn't support Multiclass problems. Cab run either on binary classification or regression mode.
+  - Really needs lots of data, recommended dimesions space between 10,000 and 10,000,000
+  - CPU is recommended with factorization 
+  - Not good on dense data
+  - use case?
+    - Example click stream data on which ads on a webpage tend to be lcicked given known information about the person viewing the page. 
+      - recommend a movie to a user based on other's rating. 
+  - **How it works?**
+    - Consider a moview recommendation engine
+    - A user called Dante needs to get a movie recommended 
+    - You have a dataset of different users rating movies called (clerks, Mallrats, Dogma, Clerks part 2)
+    - But the data set from the users are incomplete because not all the users have saw the movie to get rated. 
+    - The algithm can suggest the recommendation for the user.
+
+### Classification**
+- Predict a class label (category), discrete and unordered
+- Can be binary (e.g. spam/not spam) or multi-class (e.g. letter recognition)
+- Many classifiers can return a confidence per class
+- The predictions of the model yield a decision boundary separating the classes
+#### K-Nearest Neighbor is an eample algorithm 
+- Predicts the value or classification based on which you are closest. It can be used to classify or to predict a value. 
+- This is a supervised learning as the model has to be trained with a labelled data. 
+- Example: 
+  - Assume you have trained a classification model KNN to distinguish a shape (circular, triangle or square)
+  - Now you are sending a new shape to classify. When you do so you set the hyperparameter K=2.
+  - What this means is that, algorthm to find the two nearest neighbours to the input shape and decide to categrorize the input shape.
+  - KNN you will pass the K value (neighbour) (how many objects are closest to the object that you are passing in )
+  - KNN is a lazy algorithm - It doesn't use training data points to generalize but rather uses them to figure out who's nearby. 
+  - KNN doesn't lean but rather uses the training dataset to decide on similar sample.
+- Use cases:
+  - Gruoup people together for credit risk based on attributes they share with others of known credit usage. 
+  - Product recommendation on what someone likes, recommend similar items.
+
+#### Image Analysis
+- Another form of classification, it looks at the pixels of images. 
+- Assume you have a data with two columns 
+  - Column1: Image Data 
+  - Column2: Label about the image. 
+  - With the above data the model gets trained and upon providing a new image it performs the inference.
+  - Usually image analysis tool will return a confidence.
+- Amazon Rekognition. 
+Common Image classification Algorithms:
+##### **Image classification**. 
+  - It decides the picture that you have given. It uses the convolutional neural network (ResNet) that can be trained from scrath or make use of transfer learning. 
+  - Resources are used from imagenet - its a db online with labelled images. 
+##### Object Detection
+  - It will take a specific image and pull apart the objects inside the image. 
+  - Example It can classify things on a desk
+##### Semantic Segmentation
+  - Low level analysis of individual pixels and identifies shapes within an image.
+  - Example: Autonomous roboto going to a different plant, that can detect geographic structures, rocks hazards etc.
+  - It accepets PNG as input
+  - It supports GPU only for training..
+  - It can deploy on CPU
+    - Which means training can be done at Cloud and can be fit into any computers (like automobile, car, video camera etc)
+  - Same like imagenet, the cityscapes dataset can be used to train and test self driving models to avoid people, cars etc. 
+  - Image Metadata Extraction:
+    - The system can be used for extracting a scene from the image and store it in a file so the image could be searchable. 
+  - Computer vision systems: 
+    - Recognize orientation of a part on an assembly line and issue a command gto robotic arn to re-orient the part.
+
+##### Blazing Text 
+- It is based on fast text algo developed by Facebook. 
+- Inference can be done in real time, optimized way to determine contextual sementic relationships between words in a body of text. 
+
+| Modes | Word2Vec (Unsupervised) | Text Classification (Supervised) |
+| --- | --- | --- |
+| Single CPU Instance | Continuous Bag of Words <br> Skip-gram <br> Batch Skip-gram | Supervised |
+| Single GPU Instance (1 or more GPUs) | Continuous Bag of Words <br> Skip-gram | Supervised with 1 GPU |
+| Multiple CPU Instances | Batch Skip-gram | None |
+
+##### Object2Vec
+- A way to map out things in a d-dimentional space to figure out how similar they might be to one another.
+- Example, give a set of words to understand how close they are . Example, Sad, upset, angry lonely, scared, happy, appreciative, fun
+- It can also help to group things together based on interest. 
+- It expects things in pairs.
+- Enbedding is used in pre-processing to pass the data.
+- Training data is required as this is a supervised algorithm.
+- It can predict rating given by a person on a movie based on similar ratings he given on other movies. 
+- It can determine which genre a book is based on its similarity to known genre.
 
 
 
+## Unsupervised Learning**
+  - Looking for patterns in the data, in which we dont necessarly see a pattern. 
+  - Imagine we have a data set with scores in x and y axis and there is no relation for the data.
+    - - Find a relation ship on data that organic brain necesarily dont know the relation. 
+  - It is best used when many dimensions are available in the data. 
+  - Unlabeled data, or data with unknown structure
+  - Explore the structure of the data to extract information
+  - Many types, we’ll just discuss two.
+#### **Clustering** 
+    - Organize information into meaningful subgroups (clusters)
+    - Objects in cluster share certain degree of similarity (and dissimilarity to other clusters)
+    - Example: distinguish different types of customers.
+    - Example: Assume you have a cluster of shapes, circle, square, and triangle, the algorithm can Group object based on the number of sides. 
+    - K-Means is an example for Clustering Algorithm
+      - K-Means expects tabular data. It is unsupervised
+      - You need to supply the column of the data which explains the attributes and which attribute the algorithm needs to pay attention on
+      - You should know data well to propose the attributes to the algorithm, if you have no idea there are ways around the tools.
+      - Sagemaker users modified K - Means
+      - Sagemaker recommends to use CPU instances and can only use 1 GPU 
+      - Spend some time to make sure you have choosen the right attribute is chosen to make the prediction.
+    - K-Means use case:
+      - Audio wave form convert to digital 
+      - MNIST - predict the handwritten image to digits
+#### **Dimensionality reduction**
+    - Data can be very high-dimensional and difficult to understand, learn from, store,…
+    - Dimensionality reduction can compress the data into fewer dimensions, while retaining most of the information
+    - Contrary to feature selection, the new features lose their (original) meaning
+    - The new representation can be a lot easier to model (and visualize)
+    - Used in unsupervised machine learning type.
+#### Anomaly Detection
+  - What is not the same, what is the different, what is not usual 
+##### Random Cut Forest Algorithm
+  - Human eyes are set to recognize if something changes in a picture (two picture similar but a small change (a person missing)). 
+  - Computers dont have the same perception ability like human but have to synthesis with mathematics
+  - Randomcut forest algorithm is useful in understanding occurences in the data that are significantly beyond normal. (Usually more than 3 standard deviations). 
+  - Note sometimes this outlier can mess up the training data.
+  - Random Cut forest algorithm gives an anomaly score to data points, Low scores indicate that a data point is considered **Normal** while high score indicates the presence of an anomaly.
+  - It scales well - RCF scales very well wiuth respct to number of features dataset size and number of instances.
+  - Doesn't benifit from GPU and AWS recommends to use compute instances
+  - Example:
+   - Lets assime you have scatter plot and a single outlier at extreme corner,
+   - When the algorithm makes the cut the one side will have the actual data and other side will have the outlier. 
+  - Use Case: 
+    - Fraud detection, check transaction happening at unusual place, at unusal time flag the transaction for closer look. 
+    - Quality control, Analyze an audio test pattern played by a high-end speaker system for any unusual frequency.
+###### IP Insights,
+    - It can use the historic base line for the IP pattern by users IDs and account numbers.  Then flag odd online behavior.
+    - Use cases: If a user tries to loginto a website from an anomalous IP address it can trigger an additional two factor authentication. 
+    - Fraud detection: ON banking only allow user activites from a known UP range.
+
+#### Text analysis Algorithms.
+##### Latent Dirichlet Allocation (LDA)
+- How similar two documents are based on the similar words in the documents. 
+-  Example: Article Recommendation:
+  - Recommend articles on similar topics which you might ave read or rated in the past. 
+- Example: Musical Influence modelling:
+  - Identify the most influencial artist in the given time. 
+##### Nueral Topic Model.
+- Similar to LDA in that both NTM and LDA can perform topic modeling. However NTM uses a different algo which might yield different results that LDA.
+##### Seuence to Sequence (Seq2Seq)
+- Think a language translation engine that can take in some text and predict what that text might be in another language. We must supply training data and vocabulary. Most of the language translation engines
+- Speech to text conversion is another use case.
+
+##### Blazing Text 
+- It is based on fast text algo developed by Facebook. 
+- Inference can be done in real time, optimized way to determine contextual sementic relationships between words in a body of text. 
+- Can be used for Sentimental analysis
+- Can be used to classify the documentaiton.
+- AWS uses same for Amazon Comprehend - for sentiment analysis, Amazon Macie for analyzing sensitive information.
+
+| Modes | Word2Vec (Unsupervised) | Text Classification (Supervised) |
+| --- | --- | --- |
+| Single CPU Instance | Continuous Bag of Words <br> Skip-gram <br> Batch Skip-gram | Supervised |
+| Single GPU Instance (1 or more GPUs) | Continuous Bag of Words <br> Skip-gram | Supervised with 1 GPU |
+| Multiple CPU Instances | Batch Skip-gram | None |
+
+
+## Semi Supervised Learning**
+  - learn a model from (few) labeled and (many) unlabeled examples
+
+## **Reinforcement Learning**
+  - It is used in robotics and automation. 
+  - Try to maximize the reward
+  - For example, use reward machanism, to train the model. For example, a robot is asked to pickup pengiun and if it picks wrong one we give a negative reward. The model try to get more reward. 
+  - AWS Deepracer uses reinforcement learning. 
+  - Develop an agent that improves its performance based on interactions with the environment
+  - Example: games like Chess, Go,…
+  - Search a (large) space of actions and states
+  - Reward function defines how well a (series of) actions works
+  - Learn a series of actions (policy) that maximizes reward through exploration
+### Markov Decision Process MDP
+- Agent to place in an environment assume its 6x7 grid. 
+- The agent to get to a candy at location G6 which is the goal
+- Note, most of the Reinforcement learning will not have a goal but the aim is to accumulate the most rewards.
+- State: The information of the environment. Lets assume agent is in C3 position in the grid.
+- Action: is movement of the agent - up/down to move to the destination
+- Observation: Information available on agent on each step. 
+- Episodes: iteration from start to end while it accumulate the award. 
+- After a series of error and trail it will develop the optimized path to reach to the destination this is called the **Policy**.
+- Example AWS Deeplearning code
+
+```
+def reward_function(self, on_track, x, y, distance_from_center, car_orientation, progress, steps, throttle, steering, track_width, waypoints, closest_waypoints):
+
+    reward = 1e-3
+    marker_1 = 0.1 * track_width
+    marker_2 = 0.2 * track_width
+    marker_3 = 0.4 * track_width
+
+    if distance_from_center >= 0.0 and distance_from_center <= marker_1:
+        reward = 1
+    elif distance_from_center >= marker_1 and distance_from_center <= marker_2:
+        reward = 0.5
+    elif distance_from_center >= marker_2 and distance_from_center <= marker_3:
+        reward = 0.1
+    else:
+        reward = 1e-3 # likely crashed/ close to off track
+
+    return reward
+```
+- This can be used with AWS Robomaker
+- Keep an eye to make sure that the Policy is continue to evolve.
+- Use case - Autonomous vehicle. 
+  - Control the airconditioning in a room
+## Forecasting
+- Past performance is not really an indicator of future results. We cant rely on past performance to predict the future.
+- To mitigate that sagemaker has following algorithm 
+### DeepAR
+- It is optimized to work with complex forecasting problems. 
+- It can predict both point-in-time values and estimated values over a timeframe by using multiple sets of historic data.
+[refer more data]
+- Use case: Forecast new product performance
+- Preduct Labor needs for special events
+
+## Ensemble learning
+- Using Muiltiple learning algorithms and models collectively to hopefully improve the model acuracy
+### Extreme Gradient Boosting (XGBoost)
+- XGBoost is a supervised learning. 
+- It accepts CSV and Libsvm for trainign inference. 
+- Trains only on CPU and memory bound. 
+- Needs lot of memory 
+- Use case: What price should be ask for a house that we need to sell. Consider all the variables comeinto picture. 
+  - Use Decision Tree Ensembles to calculate through different layer approach to create a model to predict the 
+  - Ranking products On a e-commerce sort the search results based on user data.
+  - 
 
 
 
-# AI
-- AI in reality is in place from mid 60s, like spam filters, AVs 
-- The compute power needed to make the AI to work was not available before 90s, but by 2011s advancement of computer power the AI is possible.
-- AI is very broad object.
-- - ML is a subset of AI 
-  - - Deep learning is a subset of ML. 
-# ML 
-- ML is a subset of AI 
-- Let us assume we have a data from a recent expedition (Relation between height and weight of penguine), the each data point is plotted in the graph. 
-  - We got height and weight and put it up against the graph and created a pattern, now next time if we get one data of height we can predict what the weight  will be , just an example. Looking for a trend line. Which is called the training data point. 
-  - a meadian line drawn in between (Linear regression) the data point might be better predicting the height/weight in this case, as the difference of acutal and redicted values are low. Where in the curved line drawn to match the point, the difference will be more with actual vs inference which is called overfitting.
-##### Types of Models
-- We can create a model using the data point, Models are:
-  - **The Linear Regression** (Collecting the data of height and weight (X/Y axis) and creating a more predictable linear line ). This is a traditional ML argorith,.. used on basic business cases.
-  - **The Logistic Regression**(Created for Yes or No scenarios), a binary output.
-  - **Support Vector machine**. (Cluster information into categories)
-  - **Decision Trees** (Decisioning flow) 
-##### Train the model
-The AI is built by choosing one of the model algorithm Linear, Support Vector or Decission tree and make a prediction. Now inorder to do that, you need to train the model with Data and train the model. By training it try to find the best values for the prediction. The output of the training is the model itself with that you can make the predictions. This is how the machine learning works.
+## **The Logistic Regression**(Created for Yes or No scenarios), a binary output.
+## **Support Vector machine**. (Cluster information into categories)
+## **Decision Trees** (Decisioning flow) 
 
-##### How ML Works
-- Every models start with the data, and choose an algorithm (What prediction that you need to make (example Use linear regression)), then take the data and alogirthm to train a mode. The training is computational expensive process. The output of this training is the model itself. Now we use this model using outside or new data to make predictions. 
-- Adding extra dimention to the data, or more attributes to consider like, feather density, beak types, feet length.. We will endup drawing a multi dimensions of graph, The relationship makes it bit complicated for organic brain. But ML can do calculations using multi dimensional or all dimenstional large datasets. 
 
 #### Deep Learning 
 - Actually based on principle of organic brain, DataScientist has looked at the way the organic brain works and taken the inputs into the Deeplearning. The way Brain Neurons works with neural networks. The data scientist created *Ariticial Neurons* which takes input and outputs, and inside the neuron it has activation functions. 
@@ -916,50 +1734,40 @@ The AI is built by choosing one of the model algorithm Linear, Support Vector or
 ##### Neural networks: evaluation and optimization
 
 
-#### Machine Learning concepts
-##### Lifecycle 
-1. **Collect Data** 
-    - Any kind of raw data we collect, Like from filed measuring penguins, image data, machine data 
-2. **Process Data** 
-    - The data that we collected from the filed will have all forms of data. 
-    - Get the data into a single format where the algorithm understands.
-    - Then organize the data. (Creating data in to a table)
-    - **Feature and Label**
-      - Add features and labels into the data. 
-      - Feature is the data that we use to characterise the item in the list (Example data with column, age, height, weight)
-      - Label is the thing that we predict. (Example data with colum, likes the girl/boy)
-        - Using above feature + label can be used to train a model to make a prediction matching the label in future. 
-    - **Feature Engineering**
-      - We can manupulate the feature to make better use of preduction. 
-    - **Feature reduction**
-      - Reduce the amount of extranous data.
-      - Only use the data required to make the preduction
-    - **Encoding**
-      - Replace the string with a integer value, kind of masking so that the data can be referred in later stage.
-    - **Formatting**
-      - File format that you use to feed to the model
-3. **Split the Data**
-    - *Training Data -80% of data*
-      - This is where we create the model.
-      - How to choose the parameter and algorithm to train the data 
-      - This is the reason why splitting the data is important. The training data directly influences the model.
-    - *validation Data*
-      - Training mechanism uses the validation data to see how acurate the model is generating. 
-      - To check how well the model is doing using the data.
-    - *Testing data*
-      - Testing Data is not used any time during the training.
-      - How well the model fits, checking underfit or overfit.
-4. **Train a Model**
-    The AI is built by choosing one of the model algorithm Linear, Support Vector or Decission tree and make a prediction. Now inorder to do that, you need to train the model with Data and train the model. By training it try to find the best values for the prediction. The output of the training is the model itself with that you can make the predictions. This is how the machine learning works.
-5. **Test the model**
-    - The data that collected during the Training data will be used to see how well the model fits. 
-6. **Deploy the model**
-    - Deploying model is very much of infra build.
-7. **Infer (Make the predictions)**
-    - Giving Real world unlabelled data, giving it to the model and asking it to label.
-    - This means making predictions. 
-8. **Improve (How to improve the model in real time)**
-    - As part of improvement the whole cycle starts from Step 3: Split Data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#----------------------#
+
+
 
 ##### Algorithms
  How the algorithms learns themselves?
