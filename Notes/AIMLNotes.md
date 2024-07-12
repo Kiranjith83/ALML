@@ -1227,7 +1227,8 @@ What method can I use to test accuracy and effectiveness? Should my model have a
   - Apply an algorithm to predict the basket size (Linear Learner).  
 
 ## Confusion Matrix
-- In case of a binary classification 
+- In case of a binary classification
+
 | | Actual Outcome TRUE | Actual Outcome FALSE |
 | --- | --- | --- |
 | Predicted outcome TRUE | I predicted correctly! | I was wrong. (False Positive) |
